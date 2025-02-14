@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./inquiry.css">
+</head>
+<body>
+    <div id="header">
+        <div id="bodyContent">
+            <div id="titleBar">
+                <h1>Node Connect</h1>
+                
+                <div class="divInput">
+                    <input class="inputSearch" type="text" name="searchContent" placeholder="">
+                    <span class="Icon"><i class="fa fa-search"></i></span>
+                </div>  
+                <div class="hamBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        
+            <div id="hamBtnContent">
+                <ul class="hamBtnContentul">
+                    <li class="myPage">마이 페이지</li>
+                    <li class="inquiry">문의 </li>
+                    <li class="addContent">컨텐츠 추가</li>
+                    <li class="Logout">로그아웃</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="middle">
+    <h3>문의 게시판</h3>
+    <div id="inquiry_form">
+        <form id="inquiry_form_submit"> 
+            <div class="write">
+                <div class="write_form">
+                    <h2>글 쓰기</h2>
+                    <div class="inquiry_write">
+                        <label for="">제목</label> <br>
+                        <input type="text" id="title" class="inquiry_input"> <br>
+                        <label for="">내용</label> <br>
+                        <textarea id="content" class="inquiry_input"></textarea> <br>
+                        <button type="submit" id="submit_inquiry">글 등록</button>
+                        <button type="button" id="close_inquiry_form">뒤로 가기</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <button class="open_inquiry_form_btn">글 쓰기</button>
+    </div>  
+    <div id="inquiry_list_header">
+        <ul>
+            <li>번호</li>
+            <li>작성자</li>
+            <li>제목</li>
+            <li>내용</li>
+            <li>작성일</li>
+        </ul>
+    </div>
+
+    <div id="content_wrap"></div>
+
+    <div id="pagination"></div>
+</div>
+    <div id="Footer">
+        <ul class="Footerul">
+            <li>회사소개</li>
+            <li>이용약관</li>
+            <li>채용정보</li>
+            <li>편성기준</li>
+        </ul>
+        <p>경일게임 아카데미</p>
+        <p>서울 강동구 올림픽로 651 예경빌딩 4~6층</p>
+        </div>
+    </body>
+    <script src="./inquiry.js"></script>
+</html>
