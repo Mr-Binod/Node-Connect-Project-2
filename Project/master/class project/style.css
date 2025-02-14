@@ -1,0 +1,345 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul, li {
+    list-style: none;
+}
+
+
+#titleBar {
+    width: 100%;
+    height: 70px;
+    
+    background-color: rgba(0, 0, 0, 0.855);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#bodyContent {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(230, 229, 229);
+}
+h1 {
+
+    cursor: pointer;
+    font-family: "Alfa Slab One", serif;
+    font-weight: 400;
+    font-style: normal;
+    
+   
+    color: rgba(219, 193, 100, 0.897);
+}
+
+ul {
+    margin: 0 auto;
+}
+.logoutBtn {
+    margin-right: 2.5%;
+}
+.logoutBtn:hover {
+    font-weight: bolder;
+    user-select: none;
+}
+#Content {
+    width: 100%;
+    height: 100vh;
+    
+    display: none;
+}
+
+.divInput {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    
+    
+    padding: 5px;
+    border-radius: 10px;
+}
+#inputSearch {
+    width: 380px;
+    height: 35px;
+    outline: none;
+    border-radius: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 0;
+    
+}
+.inputContent {
+    width: 480px;
+    height: 650px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin: 80px 250px;
+    background-color: rgb(228, 230, 232);
+    justify-content: space-around;
+    align-items: center;    
+    box-sizing: border-box;
+}
+.inputName {
+    width: 220px;
+    height: 25px;
+    padding: 2px;
+    font-size: 16px;
+    outline: none;
+}
+.labeltextArea {
+    margin-left: 60px;
+}
+.textArea {
+    font-size: 16px;
+    width: 350px;
+    height: 120px;
+    outline: none;
+    padding: 5px;
+}
+.Icon {
+    margin: 10px 15px;
+    color: rgb(224, 221, 221);
+}
+.saveBtn, .deleteBtn {
+    width: 100px;
+    height: 40px;
+    font-weight: bold;
+}
+.hamBtn {
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+.hamBtn span {
+    top: 50%;
+    width: 30px;
+    height: 4px;
+    background-color: rgb(224, 221, 221);
+    position: absolute; 
+    transform: translateY(-50%);
+    /* display: none; */
+}
+.hamBtn span:nth-child(1) {
+    position: absolute;
+    top: 23%;transform: translateY(-50%);
+}
+.hamBtn span:nth-child(3) {
+    position: absolute;
+    top: 75%;
+    transform: translateY(-50%);
+}
+
+
+
+.hamBtn:hover  > span {
+    background-color: rgb(148, 148, 148);
+}
+
+
+
+.isactive span:nth-child(1) {
+    transform: translateY(50%) rotate(-45deg);
+    top: 35%;
+    
+}
+.isactive span:nth-child(3) {
+    transform: translateY(-50%) rotate(45deg);
+    top: 50%;
+    
+}
+
+.isactive .hamBtn span:nth-child(2) {
+    display: none;
+}
+.hamBtnCotent {
+    width: 100%;
+    position: relative;
+    
+}
+.hamBtnContentul {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    right: 0;
+    box-sizing: border-box;
+    display: none;
+    background-color: rgb(34, 33, 33);
+}
+.hamBtnContentul li {
+    width: 100%;
+    height: 25%;
+    font-size: 22px;
+    padding: 8px;
+    user-select: none;
+    font-weight: 600;
+    color: rgb(233, 234, 235);
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: center;
+
+}
+.hamBtnContentul li:hover {
+    color: rgb(121, 178, 227);
+}
+.isactive .hamBtnContentul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.activeLogout #Content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.activeLogout #bodyContent {
+    display: none;
+}
+
+#displayContent {
+    width: 65%;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#contentUl {
+    width: 250px;
+    height: max-content;
+    font-size: 20px;
+    margin: 10px auto;
+    padding: 10px;
+   
+    
+}
+#contentUl li {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.Img {
+    width: 100%;
+    height: 350px;
+    margin-bottom: 20px;
+}
+
+.edit > .Img {
+    display: none;
+}
+.edit > .Name {
+    display: none;
+}
+.edit > .Details {
+    display: none;
+}
+.edit > .Editdeletebtn {
+    display: none;
+}
+.Editdeletebtn li {
+    user-select: none;
+    display: inline-block;
+    float: right;
+    border: 1px solid;
+    font-size: 16px;
+    margin: 0 5px;
+    padding: 0 4px;
+    font-weight: 600;
+    background-color: rgb(220, 220, 220);
+
+}
+.Editdeletebtn li:hover {
+    background-color: rgb(136, 136, 136);
+}
+
+.Editdeletebtn span {
+    user-select: none;
+}
+
+#updateForm {
+    height: 450px;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid;
+
+}
+
+#updateForm input {
+    width: 80%;
+    height: 25px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+#updateForm textarea {
+    width: 220px;
+    height: 90px;
+    outline: none;
+}
+.saveBtn {
+    margin: 0 10px;
+}
+
+#Footer {
+    width: 100%;
+    height: 300px;
+    background-color: rgb(41, 40, 40);
+    color: rgb(208, 213, 219);
+    font-size: 16px;
+  
+    padding-top: 20px;
+
+   
+}
+
+.Footerul {
+    width: 100%;
+    margin: 14px;
+    display: flex;
+    justify-content: space-around;
+}
+.Footerul li {
+    justify-content: space-around;
+    margin-bottom: 50px;
+}
+
+p {
+    margin-top: 10px;
+    margin-left: 11% ;
+}
+
+#pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#pagination span {
+    width: 25px;
+    height: 25px;
+    margin: 10px 5px;
+    font-size: 20px;
+    user-select: none;
+    border: 1px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#pagination span:hover {
+    background-color: rgb(197, 197, 197);
+}
