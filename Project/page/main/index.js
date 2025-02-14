@@ -43,7 +43,7 @@ class Comment{
 inputContent.onsubmit = (e) => {
     // e.preventDefault();
     const {contentName, contentImage, contentDetails} = e.target;
-    // if(contentName.trim() === "" || contentImage.trim() === "" || contentDetails.trim() === "") return;
+    if(contentName.value.trim() === "" || contentImage.value.trim() === "" || contentDetails.value.trim() === "") return ("정보");
     // const datE = 
     const newComment = new Comment(datA.length, contentName.value, contentImage.files[0].name, contentDetails.value);
     datA.push(newComment);
@@ -171,13 +171,20 @@ const render = (datA) => {
                 span.classList.add("edit")
             }
         
+        
+        }
+        Img.onclick = (e) => {
+            console.log("imgclick")
+            window.location.href = `../particular/particular.html?index=${i}`
         }
     }
 }
 
+
+
 const paginationCreate = () => {
     const total = datA.length;
-    const pages = Math.floor(total) / Pagenum;
+    const pages = Math.floor(total) /Pagenum;
     console.log(pages, total);
     for (let i = 0; i < pages; i++) {
         const span1 = document.createElement("span");
@@ -204,6 +211,9 @@ inputSearch.onkeyup = (e) => {
     render(searchArr);
 }
 
+
+
+
 const init = () => {
     const getdatA = localStorage.getItem("comment");
     datA = JSON.parse(getdatA);
@@ -212,5 +222,6 @@ const init = () => {
     render(datA);
     paginationContent(1);
     paginationCreate();
+
 }
 init();
