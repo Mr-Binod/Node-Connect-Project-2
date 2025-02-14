@@ -1,11 +1,7 @@
-const activehamBtn = document.querySelector(".hamBtn")
-activehamBtn.onclick = (e) => {
-    if(wrap.classList.contains("isactive")) {
-        wrap.classList.remove("isactive");
-    }
-    else {
-        wrap.classList.add("isactive");
-    }
+const getQuarry = () => {
+    const str = parseInt(location.search.replace("?", "").split("=")[1])
+    console.log(str)
+    return str
 }
 
 const nickname = {
@@ -14,6 +10,12 @@ const nickname = {
 
 document.querySelector(".nickname").innerHTML = `${nickname.nickname}님 환영합니다`;
 
+class Contentearr {
+    constructor(index){
+        this.arr=[];
+        this.index=index
+    }
+}
 class Comment {
     constructor(content, nickname, rating) {
         this.content = content;
@@ -22,11 +24,13 @@ class Comment {
     }
 }
 
-let data = JSON.parse(localStorage.getItem('comments')) || [
-    { nickname: "Alice", content: "다시는 이 감독 영화 안봐요.!", rating: 1 },
-    { nickname: "Bob", content: "원작을 못따라가네요", rating: 3 },
-    { nickname: "Charlie", content: "배우들 얼굴이 제일 재밌어요", rating: 4 }
-];
+let data = JSON.parse(localStorage.getItem('comments')) || [];
+const isData = () => {
+    for (let i = 0; i < data.length; i++) {
+        if(data[i].index === getQuarry())
+            return data[i]
+    }
+}
 console.log(data)
 let selectedRating = 0;
 let editSelectedRating = null;
@@ -60,8 +64,16 @@ document.getElementById("text_btn").onclick = (e) => {
     const content = document.getElementById("text_value").value.trim();
     if (selectedRating === 0 ) return;
 
-    const newComment = new Comment(content, nickname.nickname, selectedRating);
-    data.push(newComment);
+    if(isData()){
+        //[{"arr":[{"content":"","nickname":"ming","rating":5}],"index":1},{"arr":[{"content":"","nickname":"ming","rating":5}],"index":1}]
+        const newComment = new Comment(content, nickname.nickname, selectedRating);
+        isData().arr.push(newComment)
+    }else{
+        const newComment = new Comment(content, nickname.nickname, selectedRating);
+        const newPage = new Contentearr(getQuarry())
+        newPage.arr.push(newComment);
+        data.push(newPage);
+    }
     localStorage.setItem('comments', JSON.stringify(data));
 
     document.getElementById("text_value").value = "";
@@ -78,8 +90,8 @@ const resetRatingInput = () => {
 const drawing = () => {
     const commentList = document.getElementById("comment_list");
     commentList.innerHTML = "";
-
-    data.forEach((comment, index) => {
+console.log(isData())
+    isData().arr.forEach((comment, index) => {
         const commentItem = document.createElement("div");
         commentItem.classList.add("comment-item");
 
@@ -130,29 +142,29 @@ const drawing = () => {
 };
 
 const editComment = (index) => {
-    const newContent = prompt("댓글을 수정하세요:", data[index].content);
+    const newContent = prompt("댓글을 수정하세요:", isData().arr[index].content);
     if (newContent !== null) {
-        data[index].content = newContent;
+        isData().arr[index].content = newContent;
         if (editSelectedRating !== null) {
-            data[index].rating = editSelectedRating;
+            isData().arr[index].rating = editSelectedRating;
             editSelectedRating = null;
         }
-        localStorage.setItem('comments', JSON.stringify(data));
+        localStorage.setItem('comments', JSON.stringify(isData().arr));
         drawing();
     }
 };
 
 const deleteComment = (index) => {
     if (confirm("정말 삭제하시겠습니까?")) {
-        data.splice(index, 1);
+        isData().arr.splice(index, 1);
         localStorage.setItem('comments', JSON.stringify(data));
         drawing();
     }
 };
 
 const updateAverageRating = () => {
-    const totalRatings = data.reduce((sum, comment) => sum + comment.rating, 0);
-    const averageRating = totalRatings / data.length || 0;
+    const totalRatings = isData().arr.reduce((sum, comment) => sum + comment.rating, 0);
+    const averageRating = totalRatings / isData().arr.length || 0;
     document.getElementById("top").querySelector("span").textContent = `평균 별점: ${averageRating.toFixed(1)} ★`;
 };
 

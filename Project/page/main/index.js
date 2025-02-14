@@ -155,7 +155,7 @@ const render = (datA) => {
             const flag = confirm("삭제할래?");
             if(flag) {
                 datA.splice(i, 1);
-                const JSONdata = JSON.stringify(datA);
+                const JSONdata = JSON.stringify(datA) || [];
                 localStorage.setItem("comment", JSONdata);
                 location.reload();
 
@@ -206,7 +206,7 @@ inputSearch.onkeyup = (e) => {
 
 const init = () => {
     const getdatA = localStorage.getItem("comment");
-    datA = JSON.parse(getdatA);
+    datA = JSON.parse(getdatA) || [];
     console.log(datA);
     
     render(datA);
