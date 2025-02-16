@@ -51,10 +51,7 @@ document.querySelector(".signup-btn").addEventListener("click", () => {
    // 로컬 스토리지에 저장
    localStorage.setItem("userData", JSON.stringify(userData));
    alert("회원가입이 완료되었습니다!");
-    // 3초 뒤 로그인 페이지로 이동
-    setTimeout(() => {
         window.location.href = "../login/login.html";
-    }, 3000);
 });
 
 // 로그인 페이지로 이동하는 버튼

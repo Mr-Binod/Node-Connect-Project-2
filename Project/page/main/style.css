@@ -1,6 +1,11 @@
-
+@font-face {
+    font-family: 'SBAggroB';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 * {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
 }
 
@@ -8,6 +13,26 @@ ul, li {
     list-style: none;
 }
 
+@keyframes neonGlow {
+    0% { text-shadow: 0px 0px 5px rgb(221, 148, 138);}
+    50% { text-shadow: 0px 0px 15px rgb(216, 125, 115); }
+    100% { text-shadow: 0px 0px 5px  rgb(228, 114, 101);}
+}
+
+#nickname {
+    color: white;
+    display: inline-block;
+    font-size: 20px;
+    font-family: 'SBAggroB'; 
+    border-radius: 10px;
+}
+
+#nickname:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    animation: neonGlow 1s ease-in-out;
+}
 
 #titleBar {
     width: 100%;
