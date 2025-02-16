@@ -56,7 +56,12 @@ addContent.onclick = () => {
     }
 }
 
-// -----------------------page Contents---------------------------------
+ const info = document.querySelector(".Info")
+ info.onclick = () => {
+    location.href='../inquirymain/inquiry.html';
+ }
+
+// ------------------------page Contents---------------------------------
 
 const saveBtn = document.querySelector(".saveBtn");
 const inputContent = document.querySelector(".inputContent");
