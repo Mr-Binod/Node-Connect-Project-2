@@ -73,7 +73,7 @@ logout.onclick = () => {
     }
 };
 
-// -----------------------page Contents---------------------------------
+// -----------------------page Contents-----------------------------------
 
 const saveBtn = document.querySelector(".saveBtn");
 const inputContent = document.querySelector(".inputContent");
