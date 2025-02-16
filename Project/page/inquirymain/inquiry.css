@@ -1,27 +1,144 @@
-/* 글쓰기 폼 */
+ /* 기본 스타일: 모바일 화면(작은 화면) */
+body {
+    font-size: 14px;
+}
+
+.container {
+    width: 100%;
+}
+
+/* 화면이 768px 이상일 때 적용 (태블릿 이상) */
+@media (min-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    .container {
+        width: 75%;
+    }
+}
+
+/* 화면이 1024px 이상일 때 적용 (데스크탑) */
+@media (min-width: 1024px) {
+    body {
+        font-size: 18px;
+    }
+    .container {
+        width: 50%;
+    }
+}
+
+/* 모달 팝업 스타일 */
 .write {
-    position: absolute;
-    display: none;
-    justify-content: center;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none; /* 모달이 기본적으로 숨겨짐 */
+    justify-content: center;
+    align-items: center;
 }
 
 .write_form {
-    position: absolute;
-    top: 50%;
-    width: 400px;
-    height: 500px;
-    padding: 40px;
-    text-align: center;
-    background-color: rgb(255, 255, 255);
+    width: 80%;
+    height: 90%;
+    max-width: 400px;
+    padding: 30px;
+    background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-    transform: translateY(-50%);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
 }
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.inquiry_write {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+.inquiry_write label {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.inquiry_input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.inquiry_input:focus {
+    border-color: #5877f9;
+    outline: none;
+}
+
+textarea {
+    resize: none;
+    min-height: 150px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    background-color: #5877f9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #4057a1;
+}
+
+#close_inquiry_form, #subsubmit_inquiry {
+    background-color: #f44336;
+}
+
+#close_inquiry_form:hover {
+    background-color: #d32f2f;
+}
+
+#submit_inquiry:hover {
+    background-color: #d32f2f;
+}
+
+/* 모달 닫기 버튼 위치 */
+#close_inquiry_form, #subsubmit_inquiry {
+    position: absolute;
+    margin-top: 600px;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: transparent;
+    color: #333;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#close_inquiry_form:hover {
+    color: #f44336;
+}
+
+/* 모달 팝업 스타일 끝 */
 
 #inquiry_list {
  border-bottom: 1px solid red;
@@ -29,30 +146,40 @@
 
 /* 문의 목록 헤더 스타일 */
 #inquiry_list_header {
-    display: block;
-    width: 1200px;
+    width: 1200px; 
     height: 30px;
-    margin-bottom: 30px;
+    background-color: rgb(80, 80, 80, 0.1);  
+    padding: 10px 0;  /* 상하 여백 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  
 }
 
+/* 리스트 항목 스타일 */
 #inquiry_list_header ul {
     display: flex;
-    width: 1200px;
-    height: 40px;
-    text-align: center;
+    justify-content: space-between;  
+    align-items: center;  
     list-style: none;
-    padding-left: 0;
+    margin: 0;
+    padding: 0;
 }
 
-/* 리스트 상단 바 li */
+/* 리스트 항목 li 공통 스타일 */
 #inquiry_list_header li {
-    width: 200px;
-    border: 1px solid grey;
-    background-color:rgb(80,80,80,0.1);
-    text-align: center;
+    font-size: 14px;  
+    font-weight: bold;  
+    color: #333; 
+    text-align: center;  
+    border-right: 1px solid #ddd;  
+    transition: background-color 0.3s ease;  
 }
 
- #inquiry_list_header li:nth-child(1) {
+/* 마지막 항목에는 오른쪽 경계선 제거 */
+#inquiry_list_header li:last-child {
+    border-right: none;
+}
+
+/* 각 항목의 너비 비율 설정 */
+#inquiry_list_header li:nth-child(1) {
     width: 5%;
 }
 
@@ -69,8 +196,34 @@
 }
 
 #inquiry_list_header li:nth-child(5) {
-    width: 17%;
-} 
+    width: 15%;
+}
+
+/* 리스트 항목 hover 효과 */
+#inquiry_list_header li:hover {
+    background-color: rgba(0, 0, 0, 0.1);  /* 마우스를 올리면 배경이 살짝 어두워짐 */
+    cursor: pointer; 
+}
+
+/* 반응형 스타일 (작은 화면에서의 처리) */
+@media (max-width: 768px) {
+    #inquiry_list_header {
+        padding: 5px 0; 
+    }
+
+    #inquiry_list_header ul {
+        flex-direction: column; 
+        align-items: flex-start;  
+    }
+
+    #inquiry_list_header li {
+        width: 100%;  
+        padding: 8px 10px; 
+        text-align: left;  
+        border-right: none; 
+    }
+}
+
 
 #inquiry_form {
     margin-left: 1100px;
@@ -86,7 +239,7 @@
     font-size: 12px;
     font-weight: 700;
     color: #5d5d5d;
-    box-shadow: 0px -3px 3px #ffffff, 0px 3px 3px #cccccc;
+    box-shadow: 0px -3px 3px #ffffff, 0px 3px 3px #8f1b1b;
 }
 
 
@@ -100,33 +253,30 @@
 }
 #content_wrap ul {
     display: flex;
+    align-items: center;
     list-style: none;
     width: 1200px;
-    padding: 15px;
+    padding: 0;
+    padding-bottom: 10px;
+    padding-top: 10px;
     text-align: center;
     border-bottom: 1px solid #ccc;
-
 }
 #content_wrap li:nth-child(1) {
-    width: 3%;
+    width: 5%;
 }
-
 #content_wrap li:nth-child(2) {
     width: 15%;
 }
-
 #content_wrap li:nth-child(3) {
     width: 25%;
 }
-
 #content_wrap li:nth-child(4) {
     width: 40%;
 }
-
 #content_wrap li:nth-child(5) {
     width: 15%;
 } 
-
 
 #header {
     width:100%;
@@ -182,6 +332,12 @@ p {
     height: 300px;
     resize: none;
 }  
+/* .inquiry_write #submit_inquiry {
+    margin-left: 320px;
+    margin-bottom: 30px;
+} */
+
+
 
 .inquiry_write #submit_inquiry, #close_inquiry_form  {
     padding:8px 15px 8px 15px;
@@ -243,7 +399,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px 0;
+    margin-right: 230px;
     padding: 5px;
     border-radius: 10px;
 }

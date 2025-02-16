@@ -36,30 +36,32 @@
     </div>
 
     <div id="view_form">
-        <h4>문의 게시글 상세 보기 페이지</h4>
+        <h4 class="inquiry_view">문의 게시글 상세 보기 페이지</h4>
         <div id="content_wrap">
             <div class="">번호 : <span id="index"></span></div>
             <div class="">날짜 : <span id="date"></span></div>
             <div class="">작성자 : <span id="nickname"></span></div>
             <div class="">제목 : <span id="title"></span></div>
             <div class="">내용 : <span id="content"></span></div>
-        </div>
-        <div class="wirte_btn">
-        <button class="edit_button">수정하기</button>
-        <button class="delete_button">삭제하기</button>
-        <!-- <button class="return_button">돌아가기</button> -->
+            <div class="wirte_btn">
+            <button class="edit_button">수정하기</button>
+            <button class="delete_button">삭제하기</button>
+            <!-- <button class="return_button">돌아가기</button> -->
+            </div>
         </div>
         </div>
     </div>
-    <div class="edit" style="display: none;">
-        <div class="write_edit">
-            <h1>글 수정하기</h1>
-            <label>제목:</label>
-            <input type="text" id="edit-title">
-            <label>내용:</label>
-            <textarea id="edit-content"></textarea>
-            <button id="save-changes">수정 저장</button>
-            <button id="close-modal">닫기</button>
+    <div class="edit">
+        <div class="write_edit_form">
+            <h1 class="write_pop">글 수정하기</h1>
+            <div class="write_edit">
+                <label>제목:</label>
+                <input type="text" id="edit-title">
+                <label>내용:</label>
+                <textarea id="edit-content"></textarea>
+                <button id="save-changes">수정 저장</button>
+                <button id="close-modal">닫기</button>
+            </div>
         </div>
     </div>
     <div id="Footer">
