@@ -29,45 +29,49 @@ a {
     color: inherit;
     white-space: nowrap
 }
-.isactive span:nth-child(3) {
-    transform: translateY(-50%) rotate(45deg);
-    top: 50%;
-    
-}
 
-.isactive .hamBtn span:nth-child(2) {
-    display: none;
-}
 .hamBtn {
-    width: 30px;
+    width: 40px;
     height: 30px;
-    position: relative;
-    padding-right: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
 }
+
 .hamBtn span {
-    top: 50%;
-    width: 30px;
-    height: 4px;
-    background-color: rgb(224, 221, 221);
-    position: absolute; 
-    transform: translateY(-50%);
-    /* display: none; */
+    display: block;
+    height: 5px;
+    width: 100%;
+    background: gray;
+    border-radius: 3px;
 }
-.hamBtn span:nth-child(1) {
+
+.menu {
+    display: none;
     position: absolute;
-    top: 23%;transform: translateY(-50%);
-}
-.hamBtn span:nth-child(3) {
-    position: absolute;
-    top: 75%;
-    transform: translateY(-50%);
+    top: 50px;
+    right: 0;
+    background: black;
+    padding: 10px;
+    width: 150px;
 }
 
-
-
-.hamBtn:hover  > span {
-    background-color: rgb(148, 148, 148);
+.menu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: black;
+    color: white;
+    border: none;
+    text-align: left;
+    cursor: pointer;
 }
+
+.menu button:hover {
+    background: gray;
+}
+
 
 
 .comment-item {
@@ -108,8 +112,6 @@ span .nickname{
 }
 
 #top {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
     font-size: 18px;
     font-weight: bold;
@@ -119,4 +121,8 @@ span .nickname{
 }
 #comment_list div button {
     margin-right: 7px;
+}
+#top_img img {
+    display: flex;
+    margin: 0 auto;
 }

@@ -1,21 +1,25 @@
 const getQuarry = () => {
-    const str = parseInt(location.search.replace("?", "").split("=")[1])
-    console.log(str)
-    return str
-}
+    return parseInt(location.search.replace("?", "").split("=")[1]);
+};
 
 const nickname = {
     nickname: "ming"
 };
 
-document.querySelector(".nickname").innerHTML = `${nickname.nickname}님 환영합니다`;
+document.querySelector(".hamBtn").addEventListener("click", () => {
+    const menu = document.querySelector(".menu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+});
+
+document.querySelector(".nickname").textContent = `${nickname.nickname}님 환영합니다`;
 
 class Contentearr {
-    constructor(index){
-        this.arr=[];
-        this.index=index
+    constructor(index) {
+        this.arr = [];
+        this.index = index;
     }
 }
+
 class Comment {
     constructor(content, nickname, rating) {
         this.content = content;
@@ -25,20 +29,39 @@ class Comment {
 }
 
 let data = JSON.parse(localStorage.getItem('comments')) || [];
+
 const isData = () => {
-    for (let i = 0; i < data.length; i++) {
-        if(data[i].index === getQuarry())
-            return data[i]
+    return data.find(item => item.index === getQuarry()) || null;
+};
+
+const updateMovieInfo = () => {
+    const movieData = JSON.parse(localStorage.getItem("comment")) || [];
+    const movieId = getQuarry();
+    const movie = movieData.find(item => item.index === movieId);
+
+    if (movie) {
+        document.querySelector(".movie_title").textContent = movie.name || "영화 제목 없음";
+        document.querySelector(".movie_value").textContent = movie.details || "내용 없음";
+
+        const imgElement = document.getElementById("top_img");
+        imgElement.innerHTML = "";
+
+        if (movie.image) {
+            const image = document.createElement("img");
+            image.src = `./images/${movie.image}`;
+            image.alt = movie.name || "영화 이미지";
+            imgElement.appendChild(image);
+        }
     }
-}
-console.log(data)
+};
+
 let selectedRating = 0;
 let editSelectedRating = null;
 
 const createRatingInput = () => {
     const ratingContainer = document.createElement("div");
     ratingContainer.classList.add("rating-input-container");
-    
+
     for (let i = 1; i <= 5; i++) {
         const star = document.createElement("span");
         star.textContent = "★";
@@ -62,20 +85,19 @@ const updateRatingInput = (container, rating) => {
 document.getElementById("text_btn").onclick = (e) => {
     e.preventDefault();
     const content = document.getElementById("text_value").value.trim();
-    if (selectedRating === 0 ) return;
+    if (selectedRating === 0    ) return;
 
-    if(isData()){
-        //[{"arr":[{"content":"","nickname":"ming","rating":5}],"index":1},{"arr":[{"content":"","nickname":"ming","rating":5}],"index":1}]
-        const newComment = new Comment(content, nickname.nickname, selectedRating);
-        isData().arr.push(newComment)
-    }else{
-        const newComment = new Comment(content, nickname.nickname, selectedRating);
-        const newPage = new Contentearr(getQuarry())
-        newPage.arr.push(newComment);
+    let dataEntry = isData();
+
+    if (dataEntry) {
+        dataEntry.arr.push(new Comment(content, nickname.nickname, selectedRating));
+    } else {
+        const newPage = new Contentearr(getQuarry());
+        newPage.arr.push(new Comment(content, nickname.nickname, selectedRating));
         data.push(newPage);
     }
-    localStorage.setItem('comments', JSON.stringify(data));
 
+    localStorage.setItem('comments', JSON.stringify(data));
     document.getElementById("text_value").value = "";
     selectedRating = 0;
     resetRatingInput();
@@ -87,11 +109,28 @@ const resetRatingInput = () => {
     updateRatingInput(ratingContainer, 0);
 };
 
+const updateAverageRating = () => {
+    const dataEntry = isData();
+    const averageRatingElement = document.querySelector(".average-star-rating");
+    
+    if (!dataEntry || dataEntry.arr.length === 0) {
+        averageRatingElement.textContent = "평균 별점: 없음";
+        return;
+    }
+    
+    const totalRating = dataEntry.arr.reduce((sum, comment) => sum + comment.rating, 0);
+    const averageRating = (totalRating / dataEntry.arr.length).toFixed(1);
+    averageRatingElement.textContent = `평균 별점: ${averageRating}`;
+};
+
 const drawing = () => {
     const commentList = document.getElementById("comment_list");
     commentList.innerHTML = "";
-console.log(isData())
-    isData().arr.forEach((comment, index) => {
+
+    const dataEntry = isData();
+    if (!dataEntry) return;
+
+    dataEntry.arr.forEach((comment, index) => {
         const commentItem = document.createElement("div");
         commentItem.classList.add("comment-item");
 
@@ -105,6 +144,7 @@ console.log(isData())
 
         const ratingContainer = document.createElement("div");
         ratingContainer.classList.add("rating-container");
+
         for (let i = 1; i <= 5; i++) {
             const star = document.createElement("span");
             star.textContent = "★";
@@ -113,12 +153,12 @@ console.log(isData())
             if (i <= comment.rating) {
                 star.classList.add("selected");
             }
-            if(nickname.nickname === comment.nickname){
+            if (nickname.nickname === comment.nickname) {
                 star.onclick = () => {
                     editSelectedRating = i;
                     updateRatingInput(ratingContainer, i);
-                }
-            };
+                };
+            }
             ratingContainer.appendChild(star);
         }
 
@@ -138,36 +178,12 @@ console.log(isData())
 
         commentList.append(commentItem);
     });
+
     updateAverageRating();
 };
 
-const editComment = (index) => {
-    const newContent = prompt("댓글을 수정하세요:", isData().arr[index].content);
-    if (newContent !== null) {
-        isData().arr[index].content = newContent;
-        if (editSelectedRating !== null) {
-            isData().arr[index].rating = editSelectedRating;
-            editSelectedRating = null;
-        }
-        localStorage.setItem('comments', JSON.stringify(isData().arr));
-        drawing();
-    }
-};
-
-const deleteComment = (index) => {
-    if (confirm("정말 삭제하시겠습니까?")) {
-        isData().arr.splice(index, 1);
-        localStorage.setItem('comments', JSON.stringify(data));
-        drawing();
-    }
-};
-
-const updateAverageRating = () => {
-    const totalRatings = isData().arr.reduce((sum, comment) => sum + comment.rating, 0);
-    const averageRating = totalRatings / isData().arr.length || 0;
-    document.getElementById("top").querySelector("span").textContent = `평균 별점: ${averageRating.toFixed(1)} ★`;
-};
-
 document.getElementById("text_btn").before(createRatingInput());
-
-document.addEventListener("DOMContentLoaded", drawing);
+document.addEventListener("DOMContentLoaded", () => {
+    updateMovieInfo();
+    drawing();
+});
