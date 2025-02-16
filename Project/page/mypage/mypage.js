@@ -10,7 +10,7 @@ let nodeconnect = document.createElement("h2");
 nodeconnect.classList.add("nodeconnect");
 nodeconnect.innerText = "NodeConnect";
 
-// input, label 요소를 감싸는 요소 생성
+// input, label 요소를 감싸는 요소 생성..
 let inputlabel = document.createElement("div");
 inputlabel.classList.add("inputlabel");
 
