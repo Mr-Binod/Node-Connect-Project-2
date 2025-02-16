@@ -12,7 +12,10 @@
         const PAGENUM = 5;
         let pageInex = 1;
         
-
+        // ---------------------node connect 클리크하면 홈 화면----------------
+        Home.onclick = () => {
+            window.location.href = `../main/index.html`;
+        }
        
         // 예시 데이터
         //const inquiries = [];
