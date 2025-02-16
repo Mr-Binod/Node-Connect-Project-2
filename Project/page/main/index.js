@@ -21,6 +21,11 @@ addContent.onclick = () => {
     }
 }
 
+ const info = document.querySelector(".Info")
+ info.onclick = () => {
+    location.href='../inquirymain/inquiry.html';
+ }
+
 // -----------------------page Contents---------------------------------
 
 const saveBtn = document.querySelector(".saveBtn");
