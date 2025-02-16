@@ -428,6 +428,7 @@ p {
     border-radius: 0 0 8px 8px;
     background-color: rgb(212, 209, 205);
     box-sizing: border-box;
-
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
