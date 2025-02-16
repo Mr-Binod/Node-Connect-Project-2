@@ -7,9 +7,15 @@ document.querySelector(".login-btn").addEventListener("click", () => {
   // 회원가입에 저장된 데이터를 로컬스토리지로 부터 가져온다
   let users = JSON.parse(localStorage.getItem("userData")) || [];
 
+<<<<<<< HEAD
   // 로그인의 입력요소의 value 값을 받는다.
   let _myid = document.getElementById("myid").value;
   let _password = document.getElementById("mypwd").value;
+=======
+    // 로그인의 입력요소의 value 값을 받는다.a
+    let _myid = document.getElementById("myid").value;
+    let _password = document.getElementById("mypwd").value;
+>>>>>>> cucu
 
   const setLogin = (userName, userId, time) => {
     let date = new Date();
