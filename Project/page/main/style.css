@@ -13,6 +13,9 @@ ul, li {
     list-style: none;
 }
 
+#wrap {
+    height: 100;
+}
 @keyframes neonGlow {
     0% { text-shadow: 0px 0px 5px rgb(221, 148, 138);}
     50% { text-shadow: 0px 0px 15px rgb(216, 125, 115); }
@@ -35,6 +38,7 @@ ul, li {
 }
 
 #titleBar {
+    min-width: 768px;
     width: 100%;
     height: 70px;
     
@@ -74,7 +78,7 @@ ul {
 #Content {
     width: 100%;
     height: 100vh;
-    
+    background-color: #9ecdd6;
     display: none;
 }
 
@@ -102,14 +106,17 @@ ul {
 .inputContent {
     width: 480px;
     height: 650px;
+    border: 10px solid rgba(65, 19, 5, 0.87);
+    border-radius: 20px;
     position: absolute;
     display: flex;
     flex-direction: column;
     margin: 80px 250px;
-    background-color: rgb(228, 230, 232);
+    background-color: rgba(162, 162, 187, 0.596);
     justify-content: space-around;
     align-items: center;    
     box-sizing: border-box;
+    
 }
 .inputName {
     width: 220px;
@@ -117,9 +124,11 @@ ul {
     padding: 2px;
     font-size: 16px;
     outline: none;
+    box-sizing: border-box;
 }
 .labeltextArea {
     margin-left: 60px;
+    box-sizing: border-box;
 }
 .textArea {
     font-size: 16px;
@@ -127,22 +136,27 @@ ul {
     height: 120px;
     outline: none;
     padding: 5px;
+    box-sizing: border-box;
 }
 .Icon {
     margin: 10px 15px;
     color: rgb(224, 221, 221);
+    box-sizing: border-box;
 }
-.saveBtn, .deleteBtn {
+.saveBtn, .deleteBtn, .closeBtn {
     width: 100px;
     height: 40px;
     font-weight: bold;
+}
+.closeBtn {
+    display: inline-bl;
 }
 .hamBtn {
     width: 30px;
     height: 30px;
     position: relative;
 }
-.hamBtn span {
+.hamBtn > span {
     top: 50%;
     width: 30px;
     height: 4px;
@@ -169,12 +183,12 @@ ul {
 
 
 
-.isactive span:nth-child(1) {
+.isactive .hamBtn > :nth-child(1) {
     transform: translateY(50%) rotate(-45deg);
     top: 35%;
     
 }
-.isactive span:nth-child(3) {
+.isactive .hamBtn > span:nth-child(3) {
     transform: translateY(-50%) rotate(45deg);
     top: 50%;
     
@@ -210,6 +224,7 @@ ul {
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
+    box-sizing: border-box;
     justify-content: center;
 
 }
@@ -234,11 +249,13 @@ ul {
 }
 
 #displayContent {
+    max-width: 1235px;
     width: 65%;
     margin: 30px auto;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    box-sizing: border-box;
 }
 
 #contentUl {
@@ -247,6 +264,7 @@ ul {
     font-size: 20px;
     margin: 10px auto;
     padding: 10px;
+    box-sizing: border-box;
    
     
 }
@@ -257,7 +275,8 @@ ul {
 .Img {
     width: 100%;
     height: 350px;
-    margin-bottom: 20px;
+    margin-bottom: 3px;
+    box-sizing: border-box;
 }
 
 .edit > .Img {
@@ -272,21 +291,34 @@ ul {
 .edit > .Editdeletebtn {
     display: none;
 }
+
+.Editdeletebtn {
+    height: 30px;
+    border-radius: 8px 8px 0 0;
+    background-color: rgb(212, 209, 205);
+    box-sizing: border-box;
+}
 .Editdeletebtn li {
+   
     user-select: none;
-    display: inline-block;
+    /* display: inline-block; */
     float: right;
     border: 1px solid;
     font-size: 16px;
     margin: 0 5px;
-    padding: 0 4px;
-    font-weight: 600;
-    background-color: rgb(220, 220, 220);
+    padding: 2px 10px;
+    border-radius: 5px;
+    background-color: #037b94;
+    color: aliceblue;
+    box-sizing: border-box;
+    box-sizing: border-box;
 
 }
 .Editdeletebtn li:hover {
-    background-color: rgb(136, 136, 136);
+    background-color: #3492a5;
 }
+
+
 
 .Editdeletebtn span {
     user-select: none;
@@ -300,6 +332,7 @@ ul {
     justify-content: space-around;
     align-items: center;
     border: 1px solid;
+    box-sizing: border-box;
 
 }
 
@@ -307,7 +340,7 @@ ul {
     width: 80%;
     height: 25px;
     outline: none;
-    box-sizing: border-box;
+   
 }
 
 #updateForm textarea {
@@ -317,17 +350,18 @@ ul {
 }
 .saveBtn {
     margin: 0 10px;
+    box-sizing: border-box;
 }
 
 #Footer {
+    min-width: 768px;
     width: 100%;
-    height: 300px;
+    height: 200px;
     background-color: rgb(41, 40, 40);
     color: rgb(208, 213, 219);
     font-size: 16px;
-  
     padding-top: 20px;
-
+    box-sizing: border-box;
    
 }
 
@@ -335,16 +369,19 @@ ul {
     width: 100%;
     margin: 14px;
     display: flex;
+    box-sizing: border-box;
     justify-content: space-around;
 }
 .Footerul li {
     justify-content: space-around;
     margin-bottom: 50px;
+    box-sizing: border-box;
 }
 
 p {
     margin-top: 10px;
     margin-left: 11% ;
+    box-sizing: border-box;
 }
 
 #pagination {
@@ -363,8 +400,29 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
 }
 
 #pagination span:hover {
     background-color: rgb(197, 197, 197);
 }
+
+.Name {
+    width: 100%;
+    height: 35px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    background-color: rgb(212, 209, 205);
+}
+.Details {
+    height: 35px;
+    border-top: 1px solid #247c8d;
+    border-top: none;
+    box-sizing: border-box;
+    padding-left: 10px;
+    border-radius: 0 0 8px 8px;
+    background-color: rgb(212, 209, 205);
+    box-sizing: border-box;
+
+}
+
