@@ -56,12 +56,29 @@ addContent.onclick = () => {
     }
 }
 
- const info = document.querySelector(".Info")
- info.onclick = () => {
-    location.href='../inquirymain/inquiry.html';
- }
+const myPage = document.querySelector(".myPage") 
+myPage.onclick = () => {
+    location.href = "../mypage/mypage.html"
+}
 
-// ------------------------page Contents---------------------------------
+const logout = document.querySelector(".Logout")
+logout.onclick = () => {
+    const isLogout = confirm("정말로 로그아웃하시겠습니까?");
+        // confirm 창에서 예를 누를시  로그인 페이지로 이동
+    if (isLogout) {
+        // 로그인한 사용자의의 쿠키 삭제
+        document.cookie = "User=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
+        location.href = "../login/login.html";
+    }
+};
+
+const info = document.querySelector(".Info")
+info.onclick = () => {
+   location.href='../inquirymain/inquiry.html';
+}
+
+// -----------------------page Contents-----------------------------------
 
 const saveBtn = document.querySelector(".saveBtn");
 const inputContent = document.querySelector(".inputContent");
