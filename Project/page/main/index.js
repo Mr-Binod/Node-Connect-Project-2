@@ -103,6 +103,7 @@ inputContent.onsubmit = (e) => {
     datA.push(newComment);
     const newComment_JSON = JSON.stringify(datA);
     localStorage.setItem("comment", newComment_JSON);
+    alert("저장 되었습니다다")
     // location.reload();
 }
 
@@ -121,7 +122,7 @@ const drawing = (i, span) => {
     uploadDetails.name = "uploadDetailsname";
     saveBtn.name = "saveBtnname";
     deleteBtn.name = "deleteBtn";
-
+    deleteBtn.type = "button"
 
     updateform.id = "updateForm";
     uploadImg.type = "file";
@@ -137,21 +138,22 @@ const drawing = (i, span) => {
     
    
 
-    updateform.onsubmit = (e) => {
-        e.preventDefault();
+    // updateform.onsubmit = (e) => {
+    //     e.preventDefault();
         console.log("yes");
         deleteBtn.onclick = () => {
          
             location.reload();
         }
         
-        saveBtn.onclick = () => {
-            
+        updateform.onsubmit = (e) => {
+            e.preventDefault();
+            let flag = true;
             const {uploadImgname, uploadNamename, uploadDetailsname, saveBtnname, deleteBtnname} = e.target;
-            if(uploadImgname.value.trim() === "" || uploadNamename.value.trim() === "" || uploadDetailsname.value.trim === "") {
-                alert("사진, 이름, 내용 입력해주세요")
+            if(uploadImgname.value.trim() === "" || uploadNamename.value.trim() === "" || uploadDetailsname.value.trim() === "") {
+                alert("사진, 이름, 내용 입력해주세요");
+                return;
             }
-
             datA[i].name = uploadNamename.value;
             datA[i].image = uploadImgname.files[0].name;
             datA[i].details = uploadDetailsname.value;
@@ -160,15 +162,15 @@ const drawing = (i, span) => {
             const JSONdata = JSON.stringify(datA);
             localStorage.setItem("comment", JSONdata);
             console.log(datA)
-            render(datA);
-            
+            paginationCreate();
+            if(flag) {
+                alert("저장 완료")
+                location.reload();
+                flag = !flag;
+            }
         }
         
-    }
-    
-
-     
-    
+    // }
     savedeleteBtn.append(deleteBtn, saveBtn)
     updateform.append(uploadImg, uploadName, uploadDetails, savedeleteBtn);
     span.append(updateform);
@@ -226,7 +228,7 @@ const render = (datA) => {
             const deleteIndex = datA[i].index;
             const yes = confirm("삭제할래?");
             if (yes){
-                paginationCreate(true, deleteIndex);
+                Delete(deleteIndex);
             }
                 // location.reload();
               
@@ -249,13 +251,14 @@ const render = (datA) => {
             window.location.href = `../particular/particular.html?index=${i}`
         }
     }
+    
 }
 
 const Delete = ( deleteIndex) => {
     console.log("pagi",  deleteIndex);
     datA.splice(deleteIndex, 1);    
     console.log(datA.splice(deleteIndex, 0));
-    
+    localStorage.setItem("comment", JSON.stringify(datA));
     for (let i = 0; i < datA.length; i++) {
         datA[i].index = i;
         console.log(datA);    
@@ -269,12 +272,12 @@ Home.onclick = () =>{
 
 
 
-const paginationCreate = (flag, deleteIndex) => {
+const paginationCreate = () => {
     const total = datA.length;
     const pages = Math.floor(total) /Pagenum;
     
     console.log("pages",pages, total);
-        if(!flag) {
+    
             for (let i = 0; i < pages; i++) {
                 const span1 = document.createElement("span");
                 span1.id = "span01";
@@ -286,15 +289,11 @@ const paginationCreate = (flag, deleteIndex) => {
                     paginationContent(Pageindex);
                 }    
                 pagination.append(span1);
+              
             }
-        }
-
-        if (flag) {
-            console.log(flag)
-            flag = !flag;
-            Delete(deleteIndex);
-        }
         
+
+  
 }   
 
 const paginationContent = (i) => {

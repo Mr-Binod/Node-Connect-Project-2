@@ -21,13 +21,18 @@ ul, li {
     50% { text-shadow: 0px 0px 15px rgb(216, 125, 115); }
     100% { text-shadow: 0px 0px 5px  rgb(228, 114, 101);}
 }
-
+.user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #nickname {
     color: white;
-    display: inline-block;
+    margin-right: 40px;
     font-size: 20px;
     font-family: 'SBAggroB'; 
     border-radius: 10px;
+    box-sizing: border-box;
 }
 
 #nickname:hover {
