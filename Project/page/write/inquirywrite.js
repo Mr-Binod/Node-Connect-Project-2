@@ -8,7 +8,9 @@ const [searchArr] = location.search.replace("?", "").split('&').map((e) => e.spl
 // 만약 searchArr가 없다면(index 값이 없으면), null을 반환합니다.
 return searchArr ? parseInt(searchArr[1]) : null;
 };
-
+Home.onclick = () => {
+    window.location.href = `../main/index.html`;
+}
 // 페이지 로드 시 실행
 window.onload = () => {
 const index = getIndexFromURL();
